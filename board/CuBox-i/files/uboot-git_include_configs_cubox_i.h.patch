@@ -1,0 +1,42 @@
+diff --git a/Makefile b/Makefile
+index b09bfcc..a331873 100644
+--- a/Makefile
++++ b/Makefile
+@@ -138,7 +138,7 @@ unexport CDPATH
+ # The "examples" conditionally depend on U-Boot (say, when USE_PRIVATE_LIBGCC
+ # is "yes"), so compile examples after U-Boot is compiled.
+ SUBDIR_TOOLS = tools
+-SUBDIR_EXAMPLES = examples/standalone examples/api
++#SUBDIR_EXAMPLES = examples/standalone examples/api
+ SUBDIRS = $(SUBDIR_TOOLS)
+ 
+ .PHONY : $(SUBDIRS) $(VERSION_FILE) $(TIMESTAMP_FILE)
+diff --git a/include/configs/mx6_cubox-i.h b/include/configs/mx6_cubox-i.h
+index 51532be..e314188 100644
+--- a/include/configs/mx6_cubox-i.h
++++ b/include/configs/mx6_cubox-i.h
+@@ -29,6 +29,16 @@
+ #define CONFIG_INITRD_TAG
+ #define CONFIG_REVISION_TAG
+ 
++#define CONFIG_SYS_ICACHE_OFF
++#define CONFIG_SYS_DCACHE_OFF
++
++#ifndef CONFIG_SPL_BUILD
++#define CONFIG_HW_WATCHDOG
++#define CONFIG_IMX_WATCHDOG
++#define CONFIG_API
++#define CONFIG_SYS_MMC_MAX_DEVICE 1
++#endif
++
+ /* Size of malloc() pool */
+ #define CONFIG_SYS_MALLOC_LEN		(8 * SZ_1M)
+ 
+@@ -93,6 +103,7 @@
+ #define CONFIG_CMD_EXT2
+ #define CONFIG_CMD_EXT4
+ #define CONFIG_CMD_FAT
++#define CONFIG_CMD_ELF
+ #define CONFIG_DOS_PARTITION
+ #define CONFIG_FS_EXT4
+ #define CONFIG_FS_FAT
