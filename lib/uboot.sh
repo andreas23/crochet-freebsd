@@ -25,8 +25,12 @@ _uboot_download_instructions ( ) (
 	if [ ${UBOOT_VERSION} = "master" ]; then
 	    echo "git clone git://git.denx.de/projects/u-boot.git u-boot-master"
 	else
-            echo "ftp ftp://ftp.denx.de/pub/u-boot/u-boot-${UBOOT_VERSION}.tar.bz2"
-	    echo "tar xf u-boot-${UBOOT_VERSION}.tar.bz2"
+	    if [ ${UBOOT_VERSION} = "imx6" ]; then
+		echo "git clone git@github.com:SolidRun/u-boot-imx6.git"
+	    else
+		echo "ftp ftp://ftp.denx.de/pub/u-boot/u-boot-${UBOOT_VERSION}.tar.bz2"
+		echo "tar xf u-boot-${UBOOT_VERSION}.tar.bz2"
+	    fi
 	fi
     else
 	for l in "$@"; do
@@ -182,7 +186,10 @@ uboot_version_from_dir ( ) {
     if [ -z ${UBOOT_VERSION} ]; then
 	UBOOT_VERSION=`echo ${1} | sed -n -E 's/.*u-boot-(master)[/]?$/\1/p'`
 	if [ -z ${UBOOT_VERSION} ]; then
-	    UBOOT_VERSION="unknown"
+	    UBOOT_VERSION=`echo ${1} | sed -n -E 's/.*u-boot-(imx6)[/]?$/\1/p'`
+	    if [ -z ${UBOOT_VERSION} ]; then
+		UBOOT_VERSION="unknown"
+	    fi
 	fi
     fi
 
