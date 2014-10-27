@@ -30,7 +30,7 @@ cubox_i_check_uboot ( ) {
         CUBOX_I_UBOOT_SRC \
         "$CUBOX_I_UBOOT_SRC/board/solidrun/mx6_cubox-i/Makefile"
     strategy_add $PHASE_BUILD_OTHER uboot_patch ${CUBOX_I_UBOOT_SRC} `uboot_patch_files`
-    strategy_add $PHASE_BUILD_OTHER uboot_configure $CUBOX_I_UBOOT_SRC mx6_cubix-i_config
+    strategy_add $PHASE_BUILD_OTHER uboot_configure $CUBOX_I_UBOOT_SRC mx6_cubox-i_config
     strategy_add $PHASE_BUILD_OTHER uboot_build $CUBOX_I_UBOOT_SRC
 }
 strategy_add $PHASE_CHECK cubox_i_check_uboot
