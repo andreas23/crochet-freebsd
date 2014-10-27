@@ -26,7 +26,7 @@ _uboot_download_instructions ( ) (
 	    echo "git clone git://git.denx.de/projects/u-boot.git u-boot-master"
 	else
 	    if [ ${UBOOT_VERSION} = "imx6" ]; then
-		echo "git clone git@github.com:SolidRun/u-boot-imx6.git"
+		echo "git clone https://github.com/SolidRun/u-boot-imx6.git"
 	    else
 		echo "ftp ftp://ftp.denx.de/pub/u-boot/u-boot-${UBOOT_VERSION}.tar.bz2"
 		echo "tar xf u-boot-${UBOOT_VERSION}.tar.bz2"
